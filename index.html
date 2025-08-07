@@ -94,7 +94,8 @@
     function shareToX() {
       if (!currentImage) return;
       const gachaUrl = "https://yoroida.github.io/kanaelgacha/";
-      const tweetText = `${descriptions[currentImage]} ガチャはこちら: ${gachaUrl} #かなエルさんぽガチャ`;
+      const gachaTitle = "#かなエルさんぽガチャ";
+      const tweetText = `${descriptions[currentImage]} ガチャはこちら: ${gachaTitle} ${gachaUrl} #かなエルさんぽガチャ`;
       const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
       window.open(tweetUrl, '_blank');
     }
