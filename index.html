@@ -15,13 +15,17 @@
       font-size: 24px;
     }
     #gachaButton {
+      cursor: pointer;
+      display: block;
+      max-width: 100%; /* 画像が画面に収まるように */
+      height: auto;
     }
     #gachaButton:hover {
       opacity: 0.9;
       transform: scale(1.05);
       transition: transform 0.2s;
     }
-    img {
+    #topImage {
       max-width: 90%;
       height: auto;
       margin-top: 20px;
@@ -32,7 +36,7 @@
       h1 {
         font-size: 20px;
       }
-      img {
+      #topImage {
         max-width: 80%;
       }
     }
@@ -42,9 +46,6 @@
   <h1>#かなエルさんぽガチャ</h1>
   <img id="topImage" src="https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/top-image.png?raw=true" alt="トップ画像">
   <img id="gachaButton" src="https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/gacha-button.png?raw=true" onclick="rollGacha()" alt="ガチャボタン">
-  
-  <br>
-  <img id="resultImage" src="https://via.placeholder.com/300" alt="結果画像">
 
   <script>
     // 画像のリスト（URLやファイルパスをここに追加）
@@ -55,11 +56,30 @@
     ];
 
     function rollGacha() {
-      // ランダムに画像を選ぶ
-      const randomIndex = Math.floor(Math.random() * images.length);
-      const selectedImage = images[randomIndex];
-      // 画像を表示
-      document.getElementById("resultImage").src = selectedImage;
+      const button = document.getElementById("gachaButton");
+      button.style.pointerEvents = 'none'; // ボタンを無効化
+
+      const finalIndex = Math.floor(Math.random() * images.length);
+      const finalImage = images[finalIndex];
+
+      let count = 0;
+      const maxCounts = 20; // アニメーションの回数（調整可能）
+      const intervalTime = 100; // 各変更の間隔（ms）
+
+      const interval = setInterval(() => {
+        let randomIndex = Math.floor(Math.random() * images.length);
+        while (randomIndex === finalIndex) {
+          randomIndex = Math.floor(Math.random() * images.length);
+        }
+        document.getElementById("topImage").src = images[randomIndex];
+        count++;
+        if (count >= maxCounts) {
+          clearInterval(interval);
+          document.getElementById("topImage").src = finalImage;
+          document.getElementById("topImage").alt = "ガチャ結果画像";
+          button.style.pointerEvents = 'auto'; // ボタンを有効化
+        }
+      }, intervalTime);
     }
   </script>
 </body>
