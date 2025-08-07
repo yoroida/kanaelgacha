@@ -46,9 +46,6 @@
   <h1>#かなエルさんぽガチャ</h1>
   <img id="topImage" src="https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/top-image.png?raw=true" alt="トップ画像">
   <img id="gachaButton" src="https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/gacha-button.png?raw=true" onclick="rollGacha()" alt="ガチャボタン">
-  
-  <br>
-  <img id="resultImage" src="https://via.placeholder.com/300" alt="結果画像">
 
   <script>
     // 画像のリスト（URLやファイルパスをここに追加）
@@ -62,8 +59,9 @@
       // ランダムに画像を選ぶ
       const randomIndex = Math.floor(Math.random() * images.length);
       const selectedImage = images[randomIndex];
-      // トップ画像を入れ替える
+      // トップ画像をガチャ結果画像に入れ替える
       document.getElementById("topImage").src = selectedImage;
+      document.getElementById("topImage").alt = "ガチャ結果画像";
     }
   </script>
 </body>
