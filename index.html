@@ -1,78 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>#かなエルさんぽガチャ</title>
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <style>
- body {
- text-align: center;
- font-family: Arial, sans-serif;
- margin: 0;
- padding: 10px;
- background-color: #f0f0f0;
- }
- h1 {
- font-size: 24px;
- }
- button#gachaButton {
- background-image: url('https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/gacha-button.png?raw=true'); /* ←ここを自分の画像に変更 */
- background-size: cover;
- background-position: center;
- background-repeat: no-repeat;
- border: none;
- cursor: pointer;
- margin: 20px auto;
- display: block;
- }
- button#gachaButton:hover {
- opacity: 0.9;
- transform: scale(1.05);
- transition: transform 0.2s;
- }
- img {
- max-width: 90%;
- height: auto;
- margin-top: 20px;
- border-radius: 10px;
- }
- /* スマホ向けの調整 */
- @media (max-width: 600px) {
- h1 {
- font-size: 20px;
- }
- button#gachaButton {
- width: 150px;
- height: 60px;
- }
- img {
- max-width: 80%;
- }
- }
- </style>
+  <title>#かなエルさんぽガチャ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 10px;
+      background-color: #f0f0f0;
+    }
+    h1 {
+      font-size: 24px;
+    }
+    #gachaButton {
+      cursor: pointer;
+      margin: 20px auto;
+      display: block;
+      max-width: 100%; /* 画像が画面に収まるように */
+      height: auto;
+    }
+    #gachaButton:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+      transition: transform 0.2s;
+    }
+    img {
+      max-width: 90%;
+      height: auto;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+    /* スマホ向けの調整 */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 20px;
+      }
+      img {
+        max-width: 80%;
+      }
+    }
+  </style>
 </head>
 <body>
- <h1>#かなエルさんぽガチャ</h1>
- <img id="topImage" src="https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/top-image.png?raw=true" alt="トップ画像">
- <button id="gachaButton" onclick="roll Gacha()"></button>
- 
- <br>
- <img id="resultImage" src="https://via.placeholder.com/300" alt="結果画像">
+  <h1>#かなエルさんぽガチャ</h1>
+  <img id="topImage" src="https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/top-image.png?raw=true" alt="トップ画像">
+  <img id="gachaButton" src="https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/gacha-button.png?raw=true" onclick="rollGacha()" alt="ガチャボタン">
+  
+  <br>
+  <img id="resultImage" src="https://via.placeholder.com/300" alt="結果画像">
 
- <script>
- // 画像のリスト（URLやファイルパスをここに追加）
- const images = [
- "https://images.unsplash.com/photo-1518791841217-8f162f1e1131", // 猫
- "https://images.unsplash.com/photo-1561948955-570b270e7c36", // 犬
- "https://images.unsplash.com/photo-1444464666168-49d633b86736" // 鳥
- ];
+  <script>
+    // 画像のリスト（URLやファイルパスをここに追加）
+    const images = [
+      "https://images.unsplash.com/photo-1518791841217-8f162f1e1131", // 猫
+      "https://images.unsplash.com/photo-1561948955-570b270e7c36", // 犬
+      "https://images.unsplash.com/photo-1444464666168-49d633b86736"  // 鳥
+    ];
 
- function rollGacha() {
- // ランダムに画像を選ぶ
- const randomIndex = Math.floor(Math.random() * images.length);
- const selectedImage = images[randomIndex];
- // 画像を表示
- document.getElementById("resultImage").src = selectedImage;
- }
- </script>
+    function rollGacha() {
+      // ランダムに画像を選ぶ
+      const randomIndex = Math.floor(Math.random() * images.length);
+      const selectedImage = images[randomIndex];
+      // 画像を表示
+      document.getElementById("resultImage").src = selectedImage;
+    }
+  </script>
 </body>
+</html>
 </html>
