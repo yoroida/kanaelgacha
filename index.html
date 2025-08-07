@@ -58,30 +58,12 @@
     ];
 
     function rollGacha() {
-      const button = document.getElementById("gachaButton");
-      button.style.pointerEvents = 'none'; // ボタンを無効化
-
-      const finalIndex = Math.floor(Math.random() * images.length);
-      const finalImage = images[finalIndex];
-
-      let count = 0;
-      const maxCounts = 20; // アニメーションの回数（調整可能）
-      const intervalTime = 100; // 各変更の間隔（ms）
-
-      const interval = setInterval(() => {
-        let randomIndex = Math.floor(Math.random() * images.length);
-        while (randomIndex === finalIndex) {
-          randomIndex = Math.floor(Math.random() * images.length);
-        }
-        document.getElementById("topImage").src = images[randomIndex];
-        count++;
-        if (count >= maxCounts) {
-          clearInterval(interval);
-          document.getElementById("topImage").src = finalImage;
-          document.getElementById("topImage").alt = "ガチャ結果画像";
-          button.style.pointerEvents = 'auto'; // ボタンを有効化
-        }
-      }, intervalTime);
+      // ランダムに画像を選ぶ
+      const randomIndex = Math.floor(Math.random() * images.length);
+      const selectedImage = images[randomIndex];
+      // トップ画像を入れ替える
+      document.getElementById("topImage").src = selectedImage;
+      document.getElementById("topImage").alt = "ガチャ結果画像";
     }
   </script>
 </body>
