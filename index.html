@@ -33,6 +33,12 @@
       margin: 20px auto;
       border-radius: 10px;
     }
+    #description {
+      display: none;
+      font-size: 18px;
+      margin: 10px auto;
+      max-width: 90%;
+    }
     #shareButton {
       display: none; /* 初期状態で非表示 */
       background-color: #1DA1F2; /* Xのブランドカラー */
@@ -77,6 +83,7 @@
 <body>
   <h1>#かなエルさんぽガチャ</h1>
   <img id="topImage" src="https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/top-image.png?raw=true" alt="トップ画像">
+  <p id="description"></p>
   <img id="gachaButton" src="https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/gacha-button.png?raw=true" onclick="rollGacha()" alt="ガチャボタン">
   <button id="shareButton" onclick="shareToX()">ガチャ結果をXにポストする</button>
 
@@ -108,6 +115,9 @@
       // トップ画像を入れ替える
       document.getElementById("topImage").src = currentImage;
       document.getElementById("topImage").alt = "ガチャ結果画像";
+      // 説明文を表示
+      document.getElementById("description").textContent = descriptions[currentImage];
+      document.getElementById("description").style.display = "block";
       // シェアボタンを表示
       document.getElementById("shareButton").style.display = "block";
     }
