@@ -71,6 +71,18 @@
       font-size: 16px;
       font-weight: bold;
     }
+    footer {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    footer a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #1DA1F2;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
     /* スマホ向けの調整 */
     @media (max-width: 600px) {
       h1 {
@@ -92,4 +104,57 @@
   <img id="gachaButton" src="https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/gacha-button.png?raw=true" onclick="rollGacha()" alt="ガチャボタン">
   <button id="shareButton" onclick="shareToX()">ガチャ結果をXにポストする</button>
 
-  <a id="affiliateLink" href="https://www.amazon.co.jp/%E7%A5%9E%E5%A5%88%E5%B7%9D%E3%81%AB%E4%BD%8F%E3%82%93%E3%81%A7%E3%82%8B%E3%82%A8%E3%83%AB%E3%83%95-1-%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AFELMO-%E9%8E%A7%E7%94%B0-ebook/dp/B091YM1Y11?__mk_ja_JP=%E3%82%AB
+  <a id="affiliateLink" href="https://www.amazon.co.jp/%E7%A5%9E%E5%A5%88%E5%B7%9D%E3%81%AB%E4%BD%8F%E3%82%93%E3%81%A7%E3%82%8B%E3%82%A8%E3%83%AB%E3%83%95-1-%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AFELMO-%E9%8E%A7%E7%94%B0-ebook/dp/B091YM1Y11?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=2UQQDJNCYP4PC&dib=eyJ2IjoiMSJ9.i4URflCAIyOWdKV6YaEGffLJeSCgAK4c6D1M93WtbCjU2ZZvUXtwx7ADJa1MNoYDXiXMIF6buAstRZYOBSW8wL0Y_zb_dNU5_NOj6Vq34yCQrLk2Vrlr7-Alv4HoALavckk3MyB8EvHKQtEwXwvzaJflwGA7m7HKk6tosnrx6S3uQwnrTQnTcl6KYbe8qVdn5cN6uXB6s0qFIoeBx-0xEkjpbsNLhOE4nvxOJBvWgduvavJg8EQgLDqeEuy9px8FsCokg6qmp4ZsENtlEzLev3rH6OiEGCU4eurgRSSHavI.FeVkwF-4o-h_v8o2qQgC6RQOFsGu77FVprPqGzWnZeE&dib_tag=se&keywords=%E7%A5%9E%E5%A5%88%E5%B7%9D%E3%82%A8%E3%83%AB%E3%83%95&qid=1754587873&sprefix=%E7%A5%9E%E5%A5%88%E5%B7%9D%E3%82%A8%E3%83%AB%E3%83%95%2Caps%2C180&sr=8-1&linkCode=ll1&tag=yoroida01-22&linkId=891e1a1a459b8b0270f1d0d82289d688&language=ja_JP&ref_=as_li_ss_tl">
+    <img src="https://github.com/yoroida/kanaelgacha/blob/main/gachagazou/81Yv9ZwjOTL._SL1500_.jpg?raw=true" alt="神奈川に住んでるエルフ 1 書影">
+    <p>#神奈川に住んでるエルフ好評連載中！</p>
+  </a>
+
+  <footer>
+    <a href="https://example.com/explanation">このページの説明</a> |
+    <a href="https://twitter.com/yoroida">私のXアカウント</a>
+  </footer>
+
+  <script>
+    // 画像のリスト（URLやファイルパスをここに追加）
+    const images = [
+      "https://github.com/yoroida/kanaelgacha/blob/main/gachagazou/EXPASAebina.jpg?raw=true", // 海老名
+      "https://github.com/yoroida/kanaelgacha/blob/main/gachagazou/hayama.jpg?raw=true", // 葉山
+      "https://github.com/yoroida/kanaelgacha/blob/main/gachagazou/hikidhigawakakou.jpg?raw=true"  // 引地川
+    ];
+
+    const descriptions = {
+      "https://github.com/yoroida/kanaelgacha/blob/main/gachagazou/EXPASAebina.jpg?raw=true": "今日のお散歩はEXPASA海老名！メロンパンを食べよう",
+      "https://github.com/yoroida/kanaelgacha/blob/main/gachagazou/hayama.jpg?raw=true": "今日のお散歩は葉山町！葉山町へはJR横須賀線の逗子駅、京浜急行線の逗子・葉山駅からバスで来てね！",
+      "https://github.com/yoroida/kanaelgacha/blob/main/gachagazou/hikidhigawakakou.jpg?raw=true": "今日のお散歩は引地川河口！"
+    };
+
+    let currentImage = null;
+
+    function rollGacha() {
+      // ランダムに画像を選ぶ
+      const randomIndex = Math.floor(Math.random() * images.length);
+      currentImage = images[randomIndex];
+      // トップ画像を入れ替える
+      document.getElementById("topImage").src = currentImage;
+      document.getElementById("topImage").alt = "ガチャ結果画像";
+      // 説明文を表示
+      document.getElementById("description").textContent = descriptions[currentImage];
+      document.getElementById("description").style.display = "block";
+      // シェアボタンを表示
+      document.getElementById("shareButton").style.display = "block";
+    }
+
+    function shareToX() {
+      if (!currentImage) return;
+      const gachaUrl = "https://yoroida.github.io/kanaelgacha/";
+      const tweetText = `${descriptions[currentImage]} #かなエルさんぽガチャ ${gachaUrl}`;
+      const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+      window.open(tweetUrl, '_blank');
+    }
+
+    function resetPage() {
+      location.reload(); // ページをリロードして初期状態に戻す
+    }
+  </script>
+</body>
+</html>
