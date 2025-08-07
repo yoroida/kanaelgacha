@@ -62,7 +62,7 @@
   <h1>#かなエルさんぽガチャ</h1>
   <img id="topImage" src="https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/top-image.png?raw=true" alt="トップ画像">
   <img id="gachaButton" src="https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/gacha-button.png?raw=true" onclick="rollGacha()" alt="ガチャボタン">
-  <button id="shareButton" onclick="shareToX()">Xにポストする</button>
+  <button id="shareButton" onclick="shareToX()">ガチャ結果をXにポストする</button>
 
   <script>
     // 画像のリスト（URLやファイルパスをここに追加）
@@ -72,21 +72,23 @@
       "https://images.unsplash.com/photo-1444464666168-49d633b86736"  // 鳥
     ];
 
+    let currentImage = null;
+
     function rollGacha() {
       // ランダムに画像を選ぶ
       const randomIndex = Math.floor(Math.random() * images.length);
-      const selectedImage = images[randomIndex];
+      currentImage = images[randomIndex];
       // トップ画像を入れ替える
-      document.getElementById("topImage").src = selectedImage;
+      document.getElementById("topImage").src = currentImage;
       document.getElementById("topImage").alt = "ガチャ結果画像";
       // シェアボタンを表示
       document.getElementById("shareButton").style.display = "block";
     }
 
     function shareToX() {
-      const imgSrc = document.getElementById("topImage").src;
-      const tweetText = "ガチャ結果！ #かなエルさんぽガチャ";
-      const tweetUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(imgSrc)}&text=${encodeURIComponent(tweetText)}`;
+      if (!currentImage) return;
+      const tweetText = "ガチャ結果が出ました！ #かなエルさんぽガチャ";
+      const tweetUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentImage)}&text=${encodeURIComponent(tweetText)}`;
       window.open(tweetUrl, '_blank');
     }
   </script>
