@@ -15,7 +15,7 @@
       font-size: 24px;
     }
     #gachaButton {
-      cursor: pointer；
+      cursor: pointer;
       display: block;
       max-width: 100%; /* 画像が画面に収まるように */
       height: auto;
@@ -62,10 +62,9 @@
       // ランダムに画像を選ぶ
       const randomIndex = Math.floor(Math.random() * images.length);
       const selectedImage = images[randomIndex];
-      // 画像を表示
-      document.getElementById("resultImage").src = selectedImage;
+      // トップ画像を入れ替える
+      document.getElementById("topImage").src = selectedImage;
     }
   </script>
 </body>
-</html>
 </html>
