@@ -33,6 +33,20 @@
       margin: 20px auto;
       border-radius: 10px;
     }
+    #shareButton {
+      display: none; /* 初期状態で非表示 */
+      background-color: #1DA1F2; /* Xのブランドカラー */
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 20px auto;
+      border-radius: 5px;
+    }
+    #shareButton:hover {
+      opacity: 0.9;
+    }
     /* スマホ向けの調整 */
     @media (max-width: 600px) {
       h1 {
@@ -48,6 +62,7 @@
   <h1>#かなエルさんぽガチャ</h1>
   <img id="topImage" src="https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/top-image.png?raw=true" alt="トップ画像">
   <img id="gachaButton" src="https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/gacha-button.png?raw=true" onclick="rollGacha()" alt="ガチャボタン">
+  <button id="shareButton" onclick="shareToX()">Xにポストする</button>
 
   <script>
     // 画像のリスト（URLやファイルパスをここに追加）
@@ -64,6 +79,15 @@
       // トップ画像を入れ替える
       document.getElementById("topImage").src = selectedImage;
       document.getElementById("topImage").alt = "ガチャ結果画像";
+      // シェアボタンを表示
+      document.getElementById("shareButton").style.display = "block";
+    }
+
+    function shareToX() {
+      const imgSrc = document.getElementById("topImage").src;
+      const tweetText = "ガチャ結果！ #かなエルさんぽガチャ";
+      const tweetUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(imgSrc)}&text=${encodeURIComponent(tweetText)}`;
+      window.open(tweetUrl, '_blank');
     }
   </script>
 </body>
