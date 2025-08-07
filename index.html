@@ -72,6 +72,12 @@
       "https://images.unsplash.com/photo-1444464666168-49d633b86736"  // 鳥
     ];
 
+    const descriptions = {
+      "https://images.unsplash.com/photo-1518791841217-8f162f1e1131": "猫が出ました！",
+      "https://images.unsplash.com/photo-1561948955-570b270e7c36": "犬が出ました！",
+      "https://images.unsplash.com/photo-1444464666168-49d633b86736": "鳥が出ました！"
+    };
+
     let currentImage = null;
 
     function rollGacha() {
@@ -87,7 +93,8 @@
 
     function shareToX() {
       if (!currentImage) return;
-      const tweetText = "ガチャ結果が出ました！ #かなエルさんぽガチャ";
+      const gachaUrl = "https://yoroida.github.io/kanaelgacha/";
+      const tweetText = `${descriptions[currentImage]} ガチャはこちら: ${gachaUrl} #かなエルさんぽガチャ`;
       const tweetUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentImage)}&text=${encodeURIComponent(tweetText)}`;
       window.open(tweetUrl, '_blank');
     }
