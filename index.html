@@ -141,6 +141,30 @@
       "https://github.com/yoroida/kanaelgacha/blob/main/gachagazou/nogeJRA.jpg?raw=true": "今日のお散歩は野毛！お酒と賭け事はほどほどに"
     };
 
+    const unifiedUrl = 'https://comic.pixiv.net/works/6778'; // 統一リンク
+    const spotNames = [
+      "海老名",
+      "葉山",
+      "引地川河口",
+      "鎌倉",
+      "京急川崎駅",
+      "横浜駅",
+      "神奈中バスラーメン",
+      "多摩川",
+      "野毛"
+    ];
+    const episodeMap = {
+      '海老名': { episode: '関連エピソード', isFree: true },  // 海老名のエルフ回関連
+      '葉山': { episode: '2巻', isFree: false },  // 葉山ハイエルフ
+      '引地川河口': { episode: '湘南回 (#32話頃)', isFree: false },  // 湘南エリア関連
+      '鎌倉': { episode: '#17話 / 出張版第1話', isFree: false },  // 源実朝、鎌倉のエルフ
+      '京急川崎駅': { episode: '第1話～ / #18話', isFree: true },  // 川崎関連、京急
+      '横浜駅': { episode: '第1話 / #18話', isFree: true },  // 工事、シウマイ弁当
+      '神奈中バスラーメン': { episode: '関連エピソード', isFree: true },  // 神奈中バス関連
+      '多摩川': { episode: '関連エピソード', isFree: true },  // 多摩川
+      '野毛': { episode: '関連エピソード', isFree: true }  // 野毛姐さん
+    };
+
     let currentImage = null;
 
     function rollGacha() {
@@ -154,7 +178,22 @@
       let desc = descriptions[currentImage];
       desc = desc.replace(/([！。])/g, '$1<br>');
       desc = desc.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
-      document.getElementById("description").innerHTML = desc;
+
+      // スポット名を取得
+      const spot = spotNames[randomIndex];
+      // エピソードボタン生成
+      const episodeInfo = episodeMap[spot] || { episode: '関連エピソード', isFree: true };
+      const buttonText = episodeInfo.isFree 
+        ? `このスポットが登場する${episodeInfo.episode}を読む (無料試し読み！)` 
+        : `このスポットが登場する${episodeInfo.episode}を読む`;
+      const buttonHtml = `
+        <br>
+        <button onclick="window.open('${unifiedUrl}', '_blank')" style="margin-top: 10px; padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">
+          ${buttonText}
+        </button>
+      `;
+
+      document.getElementById("description").innerHTML = desc + buttonHtml;
       document.getElementById("description").style.display = "block";
       // シェアボタンを表示
       document.getElementById("shareButton").style.display = "block";
