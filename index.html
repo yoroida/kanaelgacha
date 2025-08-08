@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,7 +102,6 @@
   <h1 onclick="resetPage()">#かなエルさんぽガチャ</h1>
   <img id="topImage" src="https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/top-image.png?raw=true" alt="トップ画像">
   <p id="description"></p>
-  <a id="trialLink" href="https://comicride.jp/series/3a8a4022c1093?utm_source=twitter&utm_medium=share&utm_campaign=tw_sh_3a8a4022c1093" style="display: none; font-size: 16px; color: #1DA1F2; margin: 10px auto; text-decoration: underline;">試し読みはこちら</a>
   <img id="gachaButton" src="https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/gacha-button.png?raw=true" onclick="rollGacha()" alt="ガチャボタン">
   <button id="shareButton" onclick="shareToX()">ガチャ結果をXにポストする</button>
 
@@ -125,7 +125,7 @@
     ];
 
     const descriptions = {
-      "https://github.com/yoroida/kanaelgacha/blob/main/gachagazou/EXPASAebina.jpg?raw=true": "今日のお散歩はEXPASA海老名！トイレで疲労度チェックしてみてね。海老名回は15話！試し読みはこちら☛https://comicride.jp/series/3a8a4022c1093?myself=false",
+      "https://github.com/yoroida/kanaelgacha/blob/main/gachagazou/EXPASAebina.jpg?raw=true": "今日のお散歩はEXPASA海老名！トイレで疲労度チェックしてみてね。海老名回は15話！試し読みはこちら☛https://comicride.jp/series/3a8a4022c1093?utm_source=twitter&utm_medium=share&utm_campaign=tw_sh_3a8a4022c1093",
       "https://github.com/yoroida/kanaelgacha/blob/main/gachagazou/hayama.jpg?raw=true": "今日のお散歩は葉山町！葉山町へはJR横須賀線の逗子駅、京浜急行線の逗子・葉山駅からバスで来てね！",
       "https://github.com/yoroida/kanaelgacha/blob/main/gachagazou/hikidhigawakakou.jpg?raw=true": "今日のお散歩は引地川河口！"
     };
@@ -140,7 +140,10 @@
       document.getElementById("topImage").src = currentImage;
       document.getElementById("topImage").alt = "ガチャ結果画像";
       // 説明文を表示
-      document.getElementById("description").textContent = descriptions[currentImage];
+      let desc = descriptions[currentImage];
+      desc = desc.replace(/([！。])/g, '$1<br>');
+      desc = desc.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
+      document.getElementById("description").innerHTML = desc;
       document.getElementById("description").style.display = "block";
       // シェアボタンを表示
       document.getElementById("shareButton").style.display = "block";
