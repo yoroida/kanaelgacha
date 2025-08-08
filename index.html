@@ -101,6 +101,7 @@
   <h1 onclick="resetPage()">#かなエルさんぽガチャ</h1>
   <img id="topImage" src="https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/top-image.png?raw=true" alt="トップ画像">
   <p id="description"></p>
+  <a id="trialLink" href="https://comicride.jp/series/3a8a4022c1093?utm_source=twitter&utm_medium=share&utm_campaign=tw_sh_3a8a4022c1093" style="display: none; font-size: 16px; color: #1DA1F2; margin: 10px auto; text-decoration: underline;">試し読みはこちら</a>
   <img id="gachaButton" src="https://github.com/yoroida/kanaelgacha/blob/main/gacha_gazou/gacha-button.png?raw=true" onclick="rollGacha()" alt="ガチャボタン">
   <button id="shareButton" onclick="shareToX()">ガチャ結果をXにポストする</button>
 
@@ -143,6 +144,8 @@
       document.getElementById("description").style.display = "block";
       // シェアボタンを表示
       document.getElementById("shareButton").style.display = "block";
+      // 試し読みリンクを表示
+      document.getElementById("trialLink").style.display = "block";
     }
 
     function shareToX() {
@@ -159,4 +162,3 @@
   </script>
 </body>
 </html>
-
